@@ -1,19 +1,25 @@
+import { push } from 'react-router-redux'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { Route, Link } from 'react-router-dom'
+
 import React, { Component } from 'react';
-import './App.css';
+import './home.css';
 
 function Studyset(props) {
     return (
       <div className="row">
-        <div className="twelve columns ">
-          <div className="Setname">{props.studysetname}</div>
-          <div className="button button-primary set-edit"
-            onClick={() => props.setdelete(props.setdelete)}>
-            <i className="fa fa-trash fa-lg"></i>
+          <div className="twelve columns ">
+              <div className="Setname"><Link to="/oneset">{props.studysetname}</Link></div>
+              <div className="button button-primary set-edit"
+                  onClick={() => props.setdelete(props.setdelete)}>
+                  <i className="fa fa-trash fa-lg"></i>
           </div>
         </div>
       </div>
     );
 };
+
 class Allsets extends Component {
     constructor(props) {
       super(props);
@@ -49,12 +55,12 @@ class Allsets extends Component {
 function App() {
     return (
       <div>
-        <header id="header">
-          <h2>Sets</h2>
-        </header>
-        <section id="main" className="container">
-          <Allsets />
-        </section>
+          <header id="header">
+              <h2>Sets</h2>
+          </header>
+          <section id="main" className="container">
+              <Allsets />
+          </section>
       </div>
     );
 }

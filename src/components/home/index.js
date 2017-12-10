@@ -12,40 +12,48 @@ function Studyset(props) {
                   onClick={() => props.setdelete(props.setdelete)}>
                   <i className="fa fa-trash fa-lg"></i>
               </div>
-        </div>
+          </div>
       </div>
     );
 };
 
 class Allsets extends Component {
     constructor(props) {
-      super(props);
-      this.state = {sets: []};
+        super(props);
+        this.state = {
+            sets: []
+        };
+        this.addset = this.addset.bind(this);
+        this.setdelete = this.setdelete.bind(this);
+        this.render = this.render.bind(this);
     }
-    addset(props) {
-      var setname = window.prompt();
-      var newsets = this.state.sets.slice();
-      newsets.push(<Studyset studysetname={setname} setdelete={() => this.setdelete(3)} key={setname}/>);
-      this.setState({
-        sets: newsets
-      });
+    addset(e) {
+        if (e.key === 'Enter') {
+            var setname = e.target.value;
+            e.target.value = '';
+            e.target.blur();
+
+            var newsets = this.state.sets.slice();
+            newsets.push(<Studyset studysetname={setname} setdelete={() => this.setdelete(3)} key={setname}/>);
+            this.setState({
+                sets: newsets
+            });
+        }
     }
     setdelete(itemid) {
-      var newsets = this.state.sets;
-      const index = newsets.findIndex(a => a.id === itemid);
-      if (index === -1) return;
-      newsets.splice(index, 1);
-      this.setState({sets: newsets});
+        var newsets = this.state.sets;
+        const index = newsets.findIndex(a => a.id === itemid);
+        if (index === -1) return;
+        newsets.splice(index, 1);
+        this.setState({sets: newsets});
     }
     render() {
-      this.addset = this.addset.bind(this);
-      this.setdelete = this.setdelete.bind(this);
-      return (
-        <div>
-          {this.state.sets}
-          <button onClick={this.addset}>New Set</button>
-        </div>
-      );
+        return (
+            <div>
+                {this.state.sets}
+                <input className="button" type="text" placeholder="Add set" onKeyDown={this.addset} tabIndex="0"/>
+            </div>
+        );
     }
 }
 

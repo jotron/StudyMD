@@ -28,15 +28,16 @@
     "react-start": "react-scripts start",
     "pack": "build --dir",
     "dist": "npm run build && build",
-    "postinstall": "install-app-deps"
+    "postinstall": "install-app-deps",
+    "stop": "killall node"
   },
-"build": {
+  "build": {
     "appId": "com.electron.electron-with-create-react-app",
     "win": {
-        "iconUrl": "https://cdn2.iconfinder.com/data/icons/designer-skills/128/react-256.png"
+      "iconUrl": "https://cdn2.iconfinder.com/data/icons/designer-skills/128/react-256.png"
     },
     "directories": {
-        "buildResources": "public"
+      "buildResources": "public"
     }
-}
+  }
 }

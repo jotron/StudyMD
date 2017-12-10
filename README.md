@@ -6,16 +6,18 @@ Implemented:
 
 - React
 - ~React-Router
+- Electron
 
 To implement:
 
-- Electron
 - PouchDB
 - Redux
 
 
 
-### Next Steps
+### TODO
 
-1. Implement simple electron
-2. implement pouchdb
+- [ ] Pouch-DB
+- [ ] Remove scroll bar
+- [ ] Set icon
+- [ ] Design second view

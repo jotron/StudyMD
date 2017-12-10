@@ -14,11 +14,11 @@ const App = () => (
         <Route exact path="/oneset" component={oneset} />
       </Switch>
       <section id="footer">
-        <p className="vertical-centered"> Made with
+        <p className="vertical-centered"> Made with&nbsp;
           <i className="fa fa-heart" aria-hidden="true"> </i>
-        by Joel André 2017</p>
-      </section>
-    </main>
+        &nbsp;by Joel André 2017</p>
+          </section>
+      </main>
   </div>
 )
 

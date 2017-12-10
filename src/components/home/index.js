@@ -1,7 +1,4 @@
-import { push } from 'react-router-redux'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import { Route, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import React, { Component } from 'react';
 import './home.css';
@@ -10,11 +7,11 @@ function Studyset(props) {
     return (
       <div className="row">
           <div className="twelve columns ">
-              <div className="Setname"><Link to="/oneset">{props.studysetname}</Link></div>
+              <Link to="/oneset"><div className="Setname">{props.studysetname}</div></Link>
               <div className="button button-primary set-edit"
                   onClick={() => props.setdelete(props.setdelete)}>
                   <i className="fa fa-trash fa-lg"></i>
-          </div>
+              </div>
         </div>
       </div>
     );

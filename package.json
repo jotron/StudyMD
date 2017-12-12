@@ -5,6 +5,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "electron-compile": "^6.4.2",
+    "electron-squirrel-startup": "^1.0.0",
     "pouchdb": "^6.3.4",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -25,10 +27,11 @@
     "electron": "electron .",
     "electron-start": "node src/electron-wait-react",
     "react-start": "react-scripts start",
-    "pack": "electron-builder --dir",
+    "pack": "electron-forge package",
     "dist": "electron-builder",
-    "postinstall": "install-app-deps",
-    "stop": "killall node"
+    "stop": "killall node",
+    "make": "electron-forge make",
+    "package": "electron-forge package"
   },
   "build": {
     "appId": "com.electron.StudyMD",
@@ -46,6 +49,42 @@
     }
   },
   "devDependencies": {
-    "electron": "^1.7.9"
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "electron-forge": "^4.1.6",
+    "electron-prebuilt-compile": "1.8.2-beta.3"
+  },
+  "config": {
+    "forge": {
+      "make_targets": {
+        "win32": [
+          "squirrel"
+        ],
+        "darwin": [
+          "zip"
+        ],
+        "linux": [
+          "deb",
+          "rpm"
+        ]
+      },
+      "electronPackagerConfig": {
+        "packageManager": "yarn"
+      },
+      "electronWinstallerConfig": {
+        "name": "StudyMD"
+      },
+      "electronInstallerDebian": {},
+      "electronInstallerRedhat": {},
+      "github_repository": {
+        "owner": "",
+        "name": ""
+      },
+      "windowsStoreConfig": {
+        "packageName": "",
+        "name": "StudyMD"
+      }
+    }
   }
 }

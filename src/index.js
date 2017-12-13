@@ -9,7 +9,7 @@ import './index.css'; // Sample global css file
 const target = document.getElementById('root'); // Target in /public/index.html
 ReactDOM.render(
             <BrowserRouter>
-                    <App />
+                <App />
             </BrowserRouter>,
         target)
 registerServiceWorker();

@@ -10,12 +10,8 @@
     "pouchdb": "^6.3.4",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
-    "react-router-redux": "^5.0.0-alpha.8",
-    "react-scripts": "1.0.17",
-    "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
+    "react-scripts": "1.0.17"
   },
   "homepage": "./",
   "main": "src/electron-starter.js",
@@ -27,22 +23,21 @@
     "electron": "electron .",
     "electron-start": "node src/electron-wait-react",
     "react-start": "react-scripts start",
-    "pack": "electron-forge package",
-    "dist": "electron-builder",
-    "stop": "killall node",
-    "make": "electron-forge make",
-    "package": "electron-forge package"
+    "pack": "build --dir",
+    "dist": "npm run build && build",
+    "stop": "killall node"
   },
   "build": {
     "appId": "com.electron.StudyMD",
     "nodeGypRebuild": false,
     "win": {
-      "icon": "/public/icons/win/icon.ico"
+      "icon": "src/ressources/icons/win/icon.ico"
     },
     "mac": {
       "category": "public.app-category.productivity",
       "target": "dmg",
-      "icon": "public/icons/mac/icon.icns"
+      "icon": "src/ressources/icons/mac/icon.icns",
+      "type": "development"
     },
     "directories": {
       "buildResources": "public"
@@ -52,39 +47,7 @@
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
-    "electron-forge": "^4.1.6",
+    "electron-builder": "^19.49.0",
     "electron-prebuilt-compile": "1.8.2-beta.3"
-  },
-  "config": {
-    "forge": {
-      "make_targets": {
-        "win32": [
-          "squirrel"
-        ],
-        "darwin": [
-          "zip"
-        ],
-        "linux": [
-          "deb",
-          "rpm"
-        ]
-      },
-      "electronPackagerConfig": {
-        "packageManager": "yarn"
-      },
-      "electronWinstallerConfig": {
-        "name": "StudyMD"
-      },
-      "electronInstallerDebian": {},
-      "electronInstallerRedhat": {},
-      "github_repository": {
-        "owner": "",
-        "name": ""
-      },
-      "windowsStoreConfig": {
-        "packageName": "",
-        "name": "StudyMD"
-      }
-    }
   }
 }

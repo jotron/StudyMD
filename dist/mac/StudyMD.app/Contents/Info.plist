@@ -45,6 +45,6 @@
     <key>NSHumanReadableCopyright</key>
     <string>Copyright © 2017 jotron</string>
     <key>AsarIntegrity</key>
-    <string>{"checksums":{"app.asar":"s57gT4ZqIfZa301ISl0h6khikFPr0BlmhPR8YuMh3R6lsr5hoIy1ZFh+3HQ546/tWyXStcKKPZjNHB/cXu7RYw==","electron.asar":"oiTgaboTdzBy1BWNkcGOLGyqV21Sz9Ma0er8fokPmyELaFqGPZ00AIfKl2U+0T6xHrdBmUQhQWb8/2aswJdU1g=="}}</string>
+    <string>{"checksums":{"app.asar":"yBNOtHqebiUBmTOvusXuQEcW8K+rycjnoYZuuwUISpLjbVgd/nlkP2TbsrVd30aAKSBapBEh7461sJAGmIND2A==","electron.asar":"oiTgaboTdzBy1BWNkcGOLGyqV21Sz9Ma0er8fokPmyELaFqGPZ00AIfKl2U+0T6xHrdBmUQhQWb8/2aswJdU1g=="}}</string>
   </dict>
 </plist>

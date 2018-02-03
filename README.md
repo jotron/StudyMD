@@ -16,13 +16,6 @@ A cool app to study with markdown.
 
 
 
-### To-do
-
-- PouchDB
-- Redux
-- Markdwon
-
-
 ### Download
 
 To download for Mac, click [here](/dist/mac/StudyMD.app).
@@ -42,7 +35,15 @@ yarn install
 yarn start
 ```
 
+### To-do
 
+- PouchDB
+- Redux
+- Markdwon
+
+### Tutorials
+- [React](https://reactjs.org/docs/hello-world.html)
+- [Async](http://stackabuse.com/node-js-async-await-in-es7/)
 
 ### License
 

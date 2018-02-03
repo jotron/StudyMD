@@ -1,0 +1,38 @@
+#header {
+    margin: 50px;
+    text-align: center;
+}
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+    height: 50px;
+    right: 0;
+    opacity:  0.5;
+}
+#main {
+    text-align: center;
+}
+#back {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    text-decoration:none;
+}
+.cardside {
+    display: inline-block;
+    background-color: white;
+    margin: 0 15px 15px 15px;
+    padding-top: 10px;
+    max-width: 1000px;
+    width: calc(100% - 30px);
+
+}
+.backside {
+
+}
+.frontside {
+
+}

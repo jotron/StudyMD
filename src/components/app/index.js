@@ -17,7 +17,7 @@ const App = () => (
           <section id="footer">
               <p className="vertical-centered"> Made with&nbsp;
                   <i className="fa fa-heart" aria-hidden="true"> </i>
-              &nbsp; 2017</p>
+              &nbsp; in Switzerland</p>
           </section>
       </main>
   </div>

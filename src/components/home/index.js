@@ -13,9 +13,9 @@ function Studyset(props) {
     return (
       <div className="row">
           <div className="twelve columns ">
-              <Link to="/oneset"><div className="Setname">{props.set.doc.title}</div></Link>
+              <Link to={props.set.id}><div className="Setname">{props.set.title}</div></Link>
               <div className="button button-primary set-edit"
-                  onClick={() => props.setdelete(props.set)}>
+                  onClick={() => props.setdelete(props.set.id)}>
                   <i className="fa fa-trash fa-lg"></i>
               </div>
           </div>
@@ -40,7 +40,7 @@ class Allsets extends Component {
     getsets() {
         mypouch.showsets().then( data => {
             this.setState({
-                sets: data.rows
+                sets: data
             })
         }).catch(function (err) {
           console.log(err);
@@ -51,16 +51,23 @@ class Allsets extends Component {
             var setname = e.target.value;
             e.target.value = '';
             e.target.blur();
-            mypouch.addset(setname);
-            this.getsets();
+            mypouch.addset(setname).then( result => {
+                this.getsets();
+            }).catch(function (err) {
+                console.log(err);
+            });
         }
     }
-    setdelete(set) {
-        mypouch.deleteButtonPressed(set);
-        this.getsets();
+    setdelete(id) {
+        mypouch.deleteid(id).then( result => {
+            console.log(result);
+            this.getsets();
+        }).catch(function (err) {
+            console.log(err);
+        });
     }
     render() {
-        var rendered_sets = this.state.sets.map(data => <Studyset set={data} setdelete={this.setdelete}/>);
+        var rendered_sets = this.state.sets.map(data => <Studyset set={data} setdelete={this.setdelete} key={data.id}/>);
         return (
             <div>
                 {rendered_sets}

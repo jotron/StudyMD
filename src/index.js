@@ -8,8 +8,8 @@ import './index.css'; // Sample global css file
 
 const target = document.getElementById('root'); // Target in /public/index.html
 ReactDOM.render(
-            <BrowserRouter>
+            <MemoryRouter>
                 <App />
-            </BrowserRouter>,
+            </MemoryRouter>,
         target)
 registerServiceWorker();

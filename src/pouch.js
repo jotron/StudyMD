@@ -1,15 +1,16 @@
 import PouchDB from 'pouchdb';
 var db = new PouchDB('./pouch');
 
-export function addset(text) {
+export async function addset(set_name) {
   var set = {
-    title: text
+    title: set_name,
+    cards: [
+        {"f" : "frontside1", "b" : "<b>backside1</b>"},
+        {"f" : "frontside2", "b" : "<i>backside2</i>"},
+        {"f" : "frontside3", "b" : "<h3>backside3</h3>"}
+    ]
   };
-  db.post(set, function callback(err, result) {
-    if (!err) {
-      console.log('Successfully posted a set!');
-    }
-  });
+  return await db.post(set);
 }
 
 export async function showsets() {
@@ -21,14 +22,27 @@ export async function showsets() {
     } catch (err){
         console.log(err);
     }
-    return r
+    var rr = r.rows.map(function(row){
+        return {
+            title: row.doc.title,
+            id: row.id
+        };
+    });
+    return rr
 }
 
-export function deleteButtonPressed(set) {
-    console.log(set);
+export async function deleteid(id) {
+    /*console.log(set);
     db.remove(set.doc).then( result => {
       console.log(result);
     }).catch(function (err) {
       console.log(err);
-    });
+  });*/
+  return await db.get(id).then(function(doc) {
+      return db.remove(doc);
+  });
+}
+
+export async function getset(id) {
+    return db.get(id);
 }

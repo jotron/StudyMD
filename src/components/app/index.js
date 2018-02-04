@@ -11,7 +11,7 @@ const App = () => (
       <main>
           <Switch>
               <Route exact path="/" component={Home} />
-              <Route exact path="/oneset" component={Oneset} />
+              <Route path="/:path_id" component={Oneset} />
           </Switch>
 
           <section id="footer">

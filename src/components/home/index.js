@@ -1,13 +1,29 @@
-import { Link } from 'react-router-dom'
-
+import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
 import './home.css';
-
-// pouchdb part
 import * as mypouch from '../../pouch.js';
-/*import PouchDB from 'pouchdb';
-var db = new PouchDB('./pouch');*/
-// end part
+import * as logic from './logic.js';
+
+class Addset extends Component {
+    constructor(props) {
+        super(props);
+        this.render = this.render.bind(this);
+        this.type = this.type.bind(this);
+    }
+    type(e) {
+        if (e.key === 'Enter') {
+            var setname = e.target.value;
+            e.target.value = '';
+            e.target.blur();
+            logic.get(setname, this.props.actualize);
+        }
+    }
+    render() {
+        return(
+            <input className="button" type="text" placeholder="Add set" onKeyDown={this.type} tabIndex="0"/>
+        );
+    }
+}
 
 function Studyset(props) {
     return (
@@ -29,10 +45,10 @@ class Allsets extends Component {
         this.state = {
             sets: []
         };
-        this.addset = this.addset.bind(this);
         this.setdelete = this.setdelete.bind(this);
         this.render = this.render.bind(this);
         this.componentDidMount = this.componentDidMount.bind(this);
+        this.getsets = this.getsets.bind(this);
     }
     componentDidMount() {
         this.getsets();
@@ -45,18 +61,6 @@ class Allsets extends Component {
         }).catch(function (err) {
           console.log(err);
         });
-    }
-    addset(e) {
-        if (e.key === 'Enter') {
-            var setname = e.target.value;
-            e.target.value = '';
-            e.target.blur();
-            mypouch.addset(setname).then( result => {
-                this.getsets();
-            }).catch(function (err) {
-                console.log(err);
-            });
-        }
     }
     setdelete(id) {
         mypouch.deleteid(id).then( result => {
@@ -71,7 +75,7 @@ class Allsets extends Component {
         return (
             <div>
                 {rendered_sets}
-                <input className="button" type="text" placeholder="Add set" onKeyDown={this.addset} tabIndex="0"/>
+                <Addset actualize={this.getsets}/>
             </div>
         );
     }

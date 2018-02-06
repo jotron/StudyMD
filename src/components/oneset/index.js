@@ -30,17 +30,17 @@ class Card extends Component {
     forward() {
         if (this.state.index !== this.num - 1) {
             this.setState({
-                index: this.state.index + 1
+                index: this.state.index + 1,
+                hidden: true
             });
-            this.hide();
         }
     }
     backward() {
         if (this.state.index !== 0) {
             this.setState({
-                index: this.state.index - 1
+                index: this.state.index - 1,
+                hidden: true
             });
-            this.hide();
         }
     }
     hide() {
@@ -53,12 +53,13 @@ class Card extends Component {
             <div>
                 <div className="cardside frontside"
                     onClick={() => this.hide()}>
-                    <h4>{this.props.cards[this.state.index].f}</h4>
+                    <h4 dangerouslySetInnerHTML={{__html: this.props.cards[this.state.index].f}}>
+                    </h4>
                 </div>
                 {
                     (!this.state.hidden)? (
-                        <div className="cardside backside"
-                            dangerouslySetInnerHTML={{__html: this.props.cards[this.state.index].b}}>
+                        <div className="cardside backside">
+                            <div className="insideback" dangerouslySetInnerHTML={{__html: this.props.cards[this.state.index].b}}></div>
                         </div>
                     ) : (null)
                 }
@@ -119,6 +120,7 @@ class Oneset extends Component {
         if (this.state.loaded) {
             return (
                 <div>
+
                     {this.renderRedirect()}
                     <div id="header">
                         <h4>{this.doc.title}</h4>

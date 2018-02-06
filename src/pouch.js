@@ -1,16 +1,8 @@
 import PouchDB from 'pouchdb';
 var db = new PouchDB('./pouch');
 
-export async function addset(set_name) {
-  var set = {
-    title: set_name,
-    cards: [
-        {"f" : "frontside1", "b" : "<b>backside1</b>"},
-        {"f" : "frontside2", "b" : "<i>backside2</i>"},
-        {"f" : "frontside3", "b" : "<h3>backside3</h3>"}
-    ]
-  };
-  return await db.post(set);
+export async function addset(set) {
+    return await db.post(set);
 }
 
 export async function showsets() {

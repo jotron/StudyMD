@@ -8,13 +8,17 @@
 ### About
 A cool app to study with markdown.
 
-### Stack
+### Stack/Dependencies
 <a href="https://electronjs.org"> <img src="https://electronjs.org/images/electron-logo.svg" alt="Electron" height="90px"></a>
 [![React](src/ressources/stack/react.png)](https://facebook.github.io/react/)
 [![React Router](src/ressources/stack/react-router.png)](https://github.com/ReactTraining/react-router)
 [![Yarn](src/ressources/stack/yarn.png)](https://yarnpkg.com/)
 <a href="https://pouchdb.com/"> <img src="src/ressources/stack/pouchdb.svg" alt="Electron" height="90px"></a>
 
+and:
+- [markdown-it](https://github.com/markdown-it/markdown-it)
+- [markdown-it-katex](https://github.com/waylonflinn/markdown-it-katex)
+- [Moustrap](https://github.com/ccampbell/mousetrap)
 
 
 ### Download

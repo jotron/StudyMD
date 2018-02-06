@@ -13,6 +13,7 @@ A cool app to study with markdown.
 [![React](src/ressources/stack/react.png)](https://facebook.github.io/react/)
 [![React Router](src/ressources/stack/react-router.png)](https://github.com/ReactTraining/react-router)
 [![Yarn](src/ressources/stack/yarn.png)](https://yarnpkg.com/)
+<a href="https://pouchdb.com/"> <img src="src/ressources/stack/pouchdb.svg" alt="Electron" height="90px"></a>
 
 
 
@@ -37,13 +38,8 @@ yarn start
 
 ### To-do
 
-- PouchDB
 - Redux
 - Markdwon
-
-### Tutorials
-- [React](https://reactjs.org/docs/hello-world.html)
-- [Async](http://stackabuse.com/node-js-async-await-in-es7/)
 
 ### License
 

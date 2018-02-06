@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import * as Mousetrap from 'mousetrap'
 import './oneset.css';
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import * as mypouch from '../../pouch.js';
 
 class Card extends Component {
@@ -12,6 +13,19 @@ class Card extends Component {
         };
         this.num = this.props.cards.length;
         this.render = this.render.bind(this);
+        this.hide = this.hide.bind(this);
+        this.forward = this.forward.bind(this);
+        this.backward = this.backward.bind(this);
+    }
+    componentDidMount() {
+        Mousetrap.bind('space', this.hide);
+        Mousetrap.bind('left', this.backward);
+        Mousetrap.bind('right', this.forward);
+    }
+    componentWillUnmount() {
+        Mousetrap.unbind('space', this.hide);
+        Mousetrap.unbind('left', this.backward);
+        Mousetrap.unbind('right', this.forward);
     }
     forward() {
         if (this.state.index !== this.num - 1) {
@@ -49,13 +63,13 @@ class Card extends Component {
                     ) : (null)
                 }
                 <div>
-                    <i className="fa fa-arrow-left fa-lg"
+                    <a className="fa fa-arrow-left fa-lg arrows"
                         aria-hidden="true"
-                        onClick={() => this.backward()}></i>
+                        onClick={() => this.backward()}></a>
                     &nbsp;&nbsp;&nbsp;
-                    <i className="fa fa-arrow-right fa-lg"
+                    <a className="fa fa-arrow-right fa-lg arrows"
                         aria-hidden="true"
-                        onClick={() => this.forward()}></i>
+                        onClick={() => this.forward()}></a>
                 </div>
             </div>
         );
@@ -66,7 +80,8 @@ class Oneset extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loaded: false
+            loaded: false,
+            redirect: false
         };
         mypouch.getset(props.match.params.path_id).then( data => {
             console.log("Successfully got doc!");
@@ -79,11 +94,32 @@ class Oneset extends Component {
             console.log(err);
         });
         this.render = this.render.bind(this);
+        this.componentDidMount = this.componentDidMount.bind(this);
+        this.componentWillUnmount = this.componentWillUnmount.bind(this);
+        this.setRedirect = this.setRedirect.bind(this);
+        this.renderRedirect = this.renderRedirect.bind(this);
+    }
+    componentDidMount() {
+        Mousetrap.bind('esc', this.setRedirect);
+    }
+    componentWillUnmount() {
+        Mousetrap.unbind('esc', this.setRedirect);
+    }
+    setRedirect() {
+        this.setState({
+            redirect: true
+        })
+    }
+    renderRedirect() {
+        if (this.state.redirect) {
+            return <Redirect to='/'/>;
+        }
     }
     render() {
         if (this.state.loaded) {
             return (
                 <div>
+                    {this.renderRedirect()}
                     <div id="header">
                         <h4>{this.doc.title}</h4>
                         <Link id="back" to="/">

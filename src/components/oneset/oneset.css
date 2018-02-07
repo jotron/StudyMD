@@ -21,6 +21,11 @@
     left: 30px;
     text-decoration:none;
 }
+#backcardcontainer {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+}
 .cardside {
     display: inline-block;
     background-color: white;

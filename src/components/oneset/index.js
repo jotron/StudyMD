@@ -59,7 +59,7 @@ class Card extends Component {
                 {
                     (!this.state.hidden)? (
                         <div className="cardside backside">
-                            <div className="insideback" dangerouslySetInnerHTML={{__html: this.props.cards[this.state.index].b}}></div>
+                            <div id="backcardcontainer" dangerouslySetInnerHTML={{__html: this.props.cards[this.state.index].b}}></div>
                         </div>
                     ) : (null)
                 }

@@ -25,7 +25,7 @@ and:
 
 ### Download
 
-To download for Mac, click [here](/dist/mac/StudyMD.app).
+To download for Mac, click [here](https://github.com/jotron/StudyMD/releases).
 
 ### Run Locally
 
@@ -42,10 +42,6 @@ yarn install
 yarn start
 ```
 
-### To-do
-
-- Redux
-- Markdwon
 
 ### License
 

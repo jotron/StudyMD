@@ -2,8 +2,8 @@
   "name": "StudyMD",
   "description": "A small app for studying",
   "author": "jotron",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.2.0",
+  "private": false,
   "dependencies": {
     "electron-compile": "^6.4.2",
     "electron-squirrel-startup": "^1.0.0",
@@ -18,7 +18,7 @@
     "react-scripts": "1.0.17"
   },
   "homepage": "./",
-  "main": "src/electron-starter.js",
+  "main": "public/electron.js",
   "scripts": {
     "start": "nf start -p 3000",
     "build": "react-scripts build",

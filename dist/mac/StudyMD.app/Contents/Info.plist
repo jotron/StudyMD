@@ -19,9 +19,9 @@
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
-    <string>0.1.0</string>
+    <string>0.2.0</string>
     <key>CFBundleVersion</key>
-    <string>0.1.0</string>
+    <string>0.2.0</string>
     <key>DTSDKBuild</key>
     <string>14D125</string>
     <key>DTSDKName</key>
@@ -43,8 +43,8 @@
     <key>NSSupportsAutomaticGraphicsSwitching</key>
     <true/>
     <key>NSHumanReadableCopyright</key>
-    <string>Copyright © 2017 jotron</string>
+    <string>Copyright © 2018 jotron</string>
     <key>AsarIntegrity</key>
-    <string>{"checksums":{"app.asar":"yBNOtHqebiUBmTOvusXuQEcW8K+rycjnoYZuuwUISpLjbVgd/nlkP2TbsrVd30aAKSBapBEh7461sJAGmIND2A==","electron.asar":"oiTgaboTdzBy1BWNkcGOLGyqV21Sz9Ma0er8fokPmyELaFqGPZ00AIfKl2U+0T6xHrdBmUQhQWb8/2aswJdU1g=="}}</string>
+    <string>{"checksums":{"app.asar":"3kvVXjMySXhQkNz83eSbb36Oy2E/zv2WzzGcajc7OO/LLYUVSB0UHZ/SFfEpIhKCwLh/yQ30jytUbhzij1l6sg==","electron.asar":"oiTgaboTdzBy1BWNkcGOLGyqV21Sz9Ma0er8fokPmyELaFqGPZ00AIfKl2U+0T6xHrdBmUQhQWb8/2aswJdU1g=="}}</string>
   </dict>
 </plist>

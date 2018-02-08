@@ -3,24 +3,131 @@ import React, { Component } from 'react';
 import './home.css';
 import * as mypouch from '../../pouch.js';
 import * as logic from './logic.js';
+import Modal from 'react-modal';
+
+class Selectedheader extends Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return(
+            <div className="row">
+                <div className={"two columns button bb"+ this.props.isselected(1)}
+                    onClick={() => this.props.select(1)}>1</div>
+                <div className={"two columns button bb"+ this.props.isselected(2)}
+                    onClick={() => this.props.select(2)}>2</div>
+                <div className={"two columns button bb"+ this.props.isselected(3)}
+                    onClick={() => this.props.select(3)}>3</div>
+                <div className={"two columns button bb"+ this.props.isselected(4)}
+                    onClick={() => this.props.select(4)}>4</div>
+                <div className={"two columns button bb"+ this.props.isselected(5)}
+                    onClick={() => this.props.select(5)}>5</div>
+                <div className={"two columns button bb"+ this.props.isselected(6)}
+                    onClick={() => this.props.select(6)}>6</div>
+            </div>
+        );
+    }
+}
 
 class Addset extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            modalIsOpen: false,
+            setpath: "",
+            setname:"",
+            selected: 3
+        };
+
         this.render = this.render.bind(this);
-        this.type = this.type.bind(this);
+        this.getfile= this.getfile.bind(this);
+        this.openModal = this.openModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.select = this.select.bind(this);
+        this.isselected = this.isselected.bind(this);
+        this.isclickable = this.isclickable.bind(this);
+        this.submit = this.submit.bind(this);
     }
-    type(e) {
-        if (e.key === 'Enter') {
-            var setname = e.target.value;
-            e.target.value = '';
-            e.target.blur();
-            logic.get(setname, this.props.actualize);
+    openModal() {
+        this.setState({modalIsOpen: true});
+    }
+    closeModal() {
+        this.setState({
+            modalIsOpen: false,
+            setpath: "",
+            setname:""
+        });
+    }
+    submit() {
+        if (this.state.clickable !== "") {
+            logic.process(this.state.setpath, this.state.setname, this.state.selected, this.props.actualize);
+            //console.log(this.state.setpath, this.state.setname, this.state.selected, this.props.actualize);
+            this.closeModal();
         }
+    }
+    getfile() {
+        var fileNames = logic.get();
+        if(fileNames != undefined){
+            this.setState({
+                setpath: fileNames[0]
+            });
+            if (this.state.setname === "") {
+                var filename = fileNames[0].replace(/^.*[\\\/]/, '');
+                this.setState({
+                    setname: filename
+                })
+            }
+        }
+        else console.log("No file selected");
+    }
+    isclickable() {
+        return (this.state.setpath === "") ? "unclickable" : "";
+    }
+    handleChange(event) {
+        this.setState({setname: event.target.value});
+    }
+    isselected(i) {
+        return (this.state.selected === i) ? " button-primary" : "";
+    }
+    select(i) {
+        this.setState({selected: i});
     }
     render() {
         return(
-            <input className="button" type="text" placeholder="Add set" onKeyDown={this.type} tabIndex="0"/>
+            <div>
+                <button id="addset" onClick={this.openModal} tabIndex="0">
+                    Add set
+                </button>
+                <Modal
+                    isOpen={this.state.modalIsOpen}
+                    onRequestClose={this.closeModal}
+                    contentLabel="Example Modal"
+                    className="Modal"
+                    overlayClassName="Overlay"
+                    shouldCloseOnOverlayClick={false}
+                >
+                    <div className="row">
+                        <input className="six columns"
+                            type="text" placeholder="Setname"
+                            value={this.state.setname}
+                            onChange={this.handleChange}
+                        />
+                        <button className="six columns" onClick={this.getfile}>
+                            {(this.state.path === "") ? "Select file" : "file selected"}
+                        </button>
+                    </div>
+                    <p id="card-header-level">Card-Header Level</p>
+                    <Selectedheader select={this.select} isselected={this.isselected}/>
+                    <div className="row">
+                        <button className="six columns lowerbuttons" onClick={this.closeModal}>Cancel</button>
+                        <button className="six columns button-primary lowerbuttons" id={this.isclickable()}
+                            onClick={this.submit}>Create Set</button>
+                    </div>
+                    {/*<input type="text" placeholder="Setname"/>
+                    <button onClick={this.closeModal}>Select File</button>*/}
+                </Modal>
+            </div>
         );
     }
 }

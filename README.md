@@ -19,6 +19,8 @@ and:
 - [markdown-it](https://github.com/markdown-it/markdown-it)
 - [markdown-it-katex](https://github.com/waylonflinn/markdown-it-katex)
 - [Moustrap](https://github.com/ccampbell/mousetrap)
+- [react-modal](https://github.com/reactjs/react-modal)
+- [Skeleton](https://github.com/dhg/Skeleton)
 
 
 ### Download

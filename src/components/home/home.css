@@ -20,7 +20,7 @@
 .Setname {
     display:inline-block;
 }
-.columns:hover {
+.yellow:hover {
     color: #FFCD1F !important;
 }
 .set-edit {
@@ -62,4 +62,50 @@
   -o-transform: translateY(-50%);
   transform: translateY(-50%);
   width: 100%;
+}
+#addset {
+    background-color: white;
+}
+/* Modal*/
+.Modal {
+    top: 30%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    border: 1px solid #ccc;
+    background: #fff;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 4px;
+    outline: none;
+    padding: 20px;
+}
+.bb {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
+#card-header-level {
+    margin-bottom: 10px;
+}
+.lowerbuttons {
+    margin-top: 20px;
+    margin-bottom: 0px !important;
+}
+input:hover {
+    color: black !important;
+}
+.Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.75);
+}
+#unclickable {
+    background-color: rgba(51, 195, 240, 0.3);
+    cursor:default;
 }

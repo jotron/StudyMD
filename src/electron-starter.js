@@ -27,7 +27,6 @@ function createWindow () {
       slashes: true
   });
   mainWindow.loadURL(startUrl);
-
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
 

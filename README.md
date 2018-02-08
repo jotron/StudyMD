@@ -7,6 +7,19 @@
 
 ### About
 A cool app to study with markdown.
+Turns your Markdown-Summaries to Flashcard.
+
+###### Example (Card-Title header-level is choosable):
+
+```markdown
+# Summary-Title
+### Card-Title 1
+content
+### Card-Title 2
+content
+```
+
+
 
 ### Stack/Dependencies
 <a href="https://electronjs.org"> <img src="https://electronjs.org/images/electron-logo.svg" alt="Electron" height="90px"></a>

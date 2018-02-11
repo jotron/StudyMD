@@ -9,14 +9,21 @@
 A cool app to study with markdown.
 Turns your Markdown-Summaries to Flashcard.
 
+![Animated](src/ressources/stack/gif.gif)
+
 ###### Example (Card-Title header-level is choosable):
 
 ```markdown
-# Summary-Title
-### Card-Title 1
-content
-### Card-Title 2
-content
+# Example
+### Use Markdown
+**Bold** *Italic* and [link](github.com)
+### Use Tables
+| 1    | first step  |
+| ---- | ----------- |
+| 2    | second step |
+| 3    | third step  |
+### *Math!!* e.g. What is f(x)?
+$y = \frac{27}{4}$
 ```
 
 

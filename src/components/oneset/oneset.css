@@ -1,18 +1,8 @@
-#header {
-    margin: 50px;
-    text-align: center;
+/* Application */
+.arrows {
+    cursor: pointer;
 }
-#footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    vertical-align: middle;
-    height: 50px;
-    right: 0;
-    opacity:  0.5;
-}
-#main {
+#arrow-container {
     text-align: center;
 }
 #back {
@@ -21,20 +11,33 @@
     left: 30px;
     text-decoration:none;
 }
-#backcardcontainer {
-    display: inline-block;
-    margin-left: auto;
-    margin-right: auto;
-}
+/* Cards*/
 .cardside {
-    display: inline-block;
     background-color: white;
-    margin: 0 15px 15px 15px;
-    padding-top: 10px;
-    max-width: 1000px;
-    width: calc(100% - 30px);
+    text-align:center;
+}
+#frontside {
+    padding: 15px;
+}
+#frontside h4 {
+    margin: 0 !important;
+}
+#backside {
+    position: relative;
+    margin-top: 10px;
+    padding: 15px;
+}
+.innercard {
+    display:inline-block;
+    text-align: left;
+    max-width: 100%;
+}
+#main {
+    overflow-y: auto;
+    position: absolute;
+    bottom: 50px;
+    top: 160px;
+    width: 100%;
+}
 
-}
-.arrows {
-    cursor: pointer;
-}
+/* Markdown in Cards */

@@ -68,7 +68,7 @@ class Addset extends Component {
     }
     getfile() {
         var fileNames = logic.get();
-        if(fileNames != undefined){
+        if(fileNames !== undefined){
             this.setState({
                 setpath: fileNames[0]
             });
@@ -194,7 +194,7 @@ function App() {
           <header id="header">
               <h2>Sets</h2>
           </header>
-          <section id="main" className="container">
+          <section id="allsets" className="container">
               <Allsets />
           </section>
       </div>

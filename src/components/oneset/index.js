@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as Mousetrap from 'mousetrap'
 import './oneset.css';
+import './markdown.css';
 import { Link, Redirect } from 'react-router-dom'
 import * as mypouch from '../../pouch.js';
 
@@ -51,19 +52,19 @@ class Card extends Component {
     render() {
         return (
             <div>
-                <div className="cardside frontside"
+                <div className="container cardside" id="frontside"
                     onClick={() => this.hide()}>
                     <h4 dangerouslySetInnerHTML={{__html: this.props.cards[this.state.index].f}}>
                     </h4>
                 </div>
                 {
                     (!this.state.hidden)? (
-                        <div className="cardside backside">
-                            <div id="backcardcontainer" dangerouslySetInnerHTML={{__html: this.props.cards[this.state.index].b}}></div>
+                        <div className="cardside container" id="backside">
+                            <div className="innercard markdown-body" dangerouslySetInnerHTML={{__html: this.props.cards[this.state.index].b}}></div>
                         </div>
                     ) : (null)
                 }
-                <div>
+                <div id="arrow-container">
                     <a className="fa fa-arrow-left fa-lg arrows"
                         aria-hidden="true"
                         onClick={() => this.backward()}></a>

@@ -1,15 +1,26 @@
 /* Application */
-.arrows {
+.click {
     cursor: pointer;
+    user-select: none;
 }
 #arrow-container {
     text-align: center;
+    user-select: none;
 }
 #back {
     position: fixed;
     top: 30px;
     left: 30px;
     text-decoration:none;
+    user-select: none;
+}
+#actions {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    text-decoration:none;
+    user-select: none;
+    cursor: default;
 }
 /* Cards*/
 .cardside {

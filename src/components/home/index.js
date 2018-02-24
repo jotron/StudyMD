@@ -61,7 +61,7 @@ class Addset extends Component {
     }
     submit() {
         if (this.state.clickable !== "") {
-            logic.process(this.state.setpath, this.state.setname, this.state.selected, this.props.actualize);
+            logic.make_new(this.state.setpath, this.state.setname, this.state.selected, this.props.actualize);
             //console.log(this.state.setpath, this.state.setname, this.state.selected, this.props.actualize);
             this.closeModal();
         }

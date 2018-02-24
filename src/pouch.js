@@ -4,6 +4,9 @@ var db = new PouchDB('./pouch');
 export async function addset(set) {
     return await db.post(set);
 }
+export async function updateset(doc) {
+    return await db.put(doc);
+}
 
 export async function showsets() {
     try {
@@ -24,12 +27,6 @@ export async function showsets() {
 }
 
 export async function deleteid(id) {
-    /*console.log(set);
-    db.remove(set.doc).then( result => {
-      console.log(result);
-    }).catch(function (err) {
-      console.log(err);
-  });*/
   return await db.get(id).then(function(doc) {
       return db.remove(doc);
   });

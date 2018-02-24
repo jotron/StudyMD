@@ -12,24 +12,59 @@ var md = require('markdown-it')({
     typographer: true,
 }).use(require('markdown-it-katex'));
 
+/*Function to actualize document*/
+export function refresh(doc_id, actualize) {
+    mypouch.getset(doc_id).then( doc => {
+        console.log(doc);
+        fs.readFile(doc.setpath, 'utf-8', (err, new_data) => {
+            if(err){
+                alert("An error ocurred reading the file :" + err.message);
+                return;
+            }
+            var new_cards = parseMD(new_data, doc.setlevel);
+            doc.cards = new_cards;
+            mypouch.updateset(doc).then( result => {
+                actualize();
+            }).catch(function (err) {
+                console.log(err);
+            });
+        });
+    }).catch(function(err) {
+        console.log(err);
+    });
+    return;
+}
+
+/* Function to create new document*/
 export function get() {
     //getfile
     return remote_dialog.showOpenDialog({ filters: [
         { name: 'markdown', extensions: ['md', 'txt'] }
     ]});
 }
-
-export function process(filepath, setname, headerlevel, actualize) {
+export function make_new(filepath, setname, headerlevel, actualize) {
     fs.readFile(filepath, 'utf-8', (err, data) => {
         if(err){
             alert("An error ocurred reading the file :" + err.message);
             return;
         }
-        parseMD(data, setname, headerlevel, actualize);
+        // create
+        var new_doc = {
+          title: setname,
+          setpath: filepath,
+          setlevel: headerlevel,
+          cards: parseMD(data, headerlevel)
+        };
+        mypouch.addset(new_doc).then( result => {
+            actualize();
+        }).catch(function (err) {
+            console.log(err);
+        });
     });
 }
 
-function parseMD(data, setname, headerlevel, actualize) {
+/* Function to do all the work*/
+function parseMD(data, headerlevel) {
     //to HTML
     var parsed = md.render(data);
 
@@ -37,13 +72,11 @@ function parseMD(data, setname, headerlevel, actualize) {
     var div = document.createElement("div"), nodes;
     div.innerHTML = parsed;
     nodes = [].slice.call(div.children); // slice in array of all childnodes(childNodes)
-    console.log(nodes);
+    //console.log(nodes);
 
     //cards format: {"f" : "frontside1", "b" : "<b>backside1</b>"}
-    var set = {
-      title: setname,
-      cards: []
-    };
+    var cards = [];
+
     var active = false;
     var length = nodes.length;
     var regex1 = new RegExp('^h[1-' + headerlevel.toString() + ']$', 'i'),
@@ -54,24 +87,20 @@ function parseMD(data, setname, headerlevel, actualize) {
                 active = false;
             }
             else {
-                set.cards[set.cards.length-1].b += node.outerHTML;
+                cards[cards.length-1].b += node.outerHTML;
             }
         }
         if (regex2.test(node.nodeName)) {
             active = true;
-            set.cards.push({"f" : node.innerHTML, "b" : ""});
+            cards.push({"f" : node.innerHTML, "b" : ""});
         }
     });
 
-    console.log(set);
+    console.log(cards);
     //add set to database
-    if (set.cards.length === 0) {
+    if (cards.length === 0) {
         console.log("no cards");
         return;
     }
-    mypouch.addset(set).then( result => {
-        actualize();
-    }).catch(function (err) {
-        console.log(err);
-    });
+    return cards;
 };

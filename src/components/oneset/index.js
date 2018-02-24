@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
+import update from 'immutability-helper';
 import * as Mousetrap from 'mousetrap'
 import './oneset.css';
 import './markdown.css';
 import { Link, Redirect } from 'react-router-dom'
 import * as mypouch from '../../pouch.js';
+import * as logic from '../home/logic.js';
 
 class Card extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            cards: this.props.cards,
             index: 0,
             hidden: true
         };
@@ -18,6 +21,12 @@ class Card extends Component {
         this.forward = this.forward.bind(this);
         this.backward = this.backward.bind(this);
     }
+    componentWillReceiveProps(nextProps){
+        if (nextProps.cards !== this.props.cards) {
+            this.setState({ cards: nextProps.cards })
+        }
+    }
+
     componentDidMount() {
         Mousetrap.bind('space', this.hide);
         Mousetrap.bind('left', this.backward);
@@ -50,26 +59,29 @@ class Card extends Component {
         });
     }
     render() {
+        //console.log("State ", this.state.cards);
+        //console.log("Props ", this.props.cards);
+        console.log("render: ", this.state.cards)
         return (
             <div>
                 <div className="container cardside" id="frontside"
                     onClick={() => this.hide()}>
-                    <h4 dangerouslySetInnerHTML={{__html: this.props.cards[this.state.index].f}}>
+                    <h4 dangerouslySetInnerHTML={{__html: this.state.cards[this.state.index].f}}>
                     </h4>
                 </div>
                 {
                     (!this.state.hidden)? (
                         <div className="cardside container" id="backside">
-                            <div className="innercard markdown-body" dangerouslySetInnerHTML={{__html: this.props.cards[this.state.index].b}}></div>
+                            <div className="innercard markdown-body" dangerouslySetInnerHTML={{__html: this.state.cards[this.state.index].b}}></div>
                         </div>
                     ) : (null)
                 }
                 <div id="arrow-container">
-                    <a className="fa fa-arrow-left fa-lg arrows"
+                    <a className="fa fa-arrow-left fa-lg click"
                         aria-hidden="true"
                         onClick={() => this.backward()}></a>
                     &nbsp;&nbsp;&nbsp;
-                    <a className="fa fa-arrow-right fa-lg arrows"
+                    <a className="fa fa-arrow-right fa-lg click"
                         aria-hidden="true"
                         onClick={() => this.forward()}></a>
                 </div>
@@ -83,23 +95,18 @@ class Oneset extends Component {
         super(props);
         this.state = {
             loaded: false,
+            doc: {},
             redirect: false
         };
-        mypouch.getset(props.match.params.path_id).then( data => {
-            console.log("Successfully got doc!");
-            this.doc = data;
-            this.setState({
-                loaded: true
-            });
-            this.render();
-        }).catch(function(err) {
-            console.log(err);
-        });
         this.render = this.render.bind(this);
         this.componentDidMount = this.componentDidMount.bind(this);
         this.componentWillUnmount = this.componentWillUnmount.bind(this);
         this.setRedirect = this.setRedirect.bind(this);
         this.renderRedirect = this.renderRedirect.bind(this);
+        this.getdoc = this.getdoc.bind(this);
+        this.refresh = this.refresh.bind(this);
+
+        this.getdoc()
     }
     componentDidMount() {
         Mousetrap.bind('esc', this.setRedirect);
@@ -117,21 +124,51 @@ class Oneset extends Component {
             return <Redirect to='/'/>;
         }
     }
+    randomize() {
+        this.setState(update(this.state, {
+            doc: {
+                cards: {$set: this.state.doc.cards.sort(function(a, b){
+                    return 0.5 - Math.random();
+                })}
+            }
+        }));
+    }
+    getdoc() {
+        console.log("getdoc");
+        mypouch.getset(this.props.match.params.path_id).then( data => {
+            console.log("Successfully got doc!");
+            this.setState({
+                loaded: true,
+                doc: data
+            });
+            this.render();
+        }).catch(function(err) {
+            console.log(err);
+        });
+    }
+    refresh() {
+        logic.refresh(this.props.match.params.path_id, this.getdoc);
+    }
     render() {
         if (this.state.loaded) {
             return (
                 <div>
-
-                    {this.renderRedirect()}
                     <div id="header">
-                        <h4>{this.doc.title}</h4>
+                        <h4>{this.state.doc.title}</h4>
                         <Link id="back" to="/">
                             <i className="fa fa-caret-left fa-lg" aria-hidden="true"></i>
                             &nbsp;Sets
                         </Link>
+                        <div id="actions">
+                            <a className="fa fa-random click" title="randomize" aria-hidden="true"
+                                onClick={() => this.randomize()}></a>
+                            &nbsp;&nbsp;
+                            <a className="fa fa-refresh click" title="refresh" aria-hidden="true"
+                                onClick={() => this.refresh()}></a>
+                        </div>
                     </div>
                     <div id="main">
-                        <Card cards={this.doc.cards}/>
+                        <Card cards={this.state.doc.cards}/>
                     </div>
                 </div>
             );

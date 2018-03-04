@@ -2,7 +2,7 @@
   "name": "StudyMD",
   "description": "A small app for studying",
   "author": "jotron",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": false,
   "dependencies": {
     "electron-compile": "^6.4.2",
@@ -30,28 +30,33 @@
     "react-start": "react-scripts start",
     "pack": "build --dir",
     "dist": "npm run build && build",
-    "stop": "killall node"
+    "stop": "killall node",
+    "dist-all": "npm run build && electron-builder -mwl",
+    "publish": "npm run build && electron-builder -mwl -p always"
   },
   "build": {
     "appId": "com.electron.StudyMD",
     "nodeGypRebuild": false,
     "win": {
-        "icon": "src/ressources/icons/win/icon.ico",
-        "target": [
-            {
-                "target": "nsis",
-                "arch": [
-                    "x64",
-                    "ia32"
-                ]
-            }
-        ]
+      "icon": "src/ressources/icons/win/icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ]
     },
     "mac": {
       "category": "public.app-category.productivity",
       "target": "dmg",
       "icon": "src/ressources/icons/mac/icon.icns",
       "type": "development"
+    },
+    "linux": {
+      "icon": "src/ressources/icons/png"
     },
     "directories": {
       "buildResources": "public"
@@ -61,7 +66,7 @@
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
-    "electron-builder": "^19.49.0",
+    "electron-builder": "^20.2.0",
     "electron-prebuilt-compile": "1.8.2-beta.3"
   }
 }

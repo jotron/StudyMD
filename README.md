@@ -45,7 +45,7 @@ and:
 
 ### Download
 
-To download for Mac, click [here](https://github.com/jotron/StudyMD/releases).
+To download for Mac, Windows or Linux click [here](https://github.com/jotron/StudyMD/releases).
 
 ### Run Locally
 

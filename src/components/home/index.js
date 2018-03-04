@@ -114,7 +114,7 @@ class Addset extends Component {
                             onChange={this.handleChange}
                         />
                         <button className="six columns" onClick={this.getfile}>
-                            {(this.state.path === "") ? "Select file" : "file selected"}
+                            {(this.state.setpath === "") ? "Select file" : "file selected"}
                         </button>
                     </div>
                     <p id="card-header-level">Card-Header Level</p>

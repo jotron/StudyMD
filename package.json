@@ -2,7 +2,7 @@
   "name": "StudyMD",
   "description": "A small app for studying",
   "author": "jotron",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": false,
   "dependencies": {
     "electron-compile": "^6.4.2",
@@ -36,7 +36,16 @@
     "appId": "com.electron.StudyMD",
     "nodeGypRebuild": false,
     "win": {
-      "icon": "src/ressources/icons/win/icon.ico"
+        "icon": "src/ressources/icons/win/icon.ico",
+        "target": [
+            {
+                "target": "nsis",
+                "arch": [
+                    "x64",
+                    "ia32"
+                ]
+            }
+        ]
     },
     "mac": {
       "category": "public.app-category.productivity",

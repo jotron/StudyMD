@@ -33,6 +33,9 @@
 #frontside h4 {
     margin: 0 !important;
 }
+#frontside img {
+    max-width: 100%;
+}
 #backside {
     position: relative;
     margin-top: 10px;
